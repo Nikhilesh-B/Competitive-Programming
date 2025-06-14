@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    vector<int> vec{1, 2, 3, 4, 5, 6};
+    vector<int> vec {1, 2, 3, 4, 5, 6};
     for (auto num : vec)
     {
         num = 3;

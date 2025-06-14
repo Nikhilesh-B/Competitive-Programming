@@ -36,3 +36,5 @@ def do_topsort(g):
 
 
 print(" ".join(map(str, [x+1 for x in do_topsort(graph)][::-1])))
+
+print("DONE")
