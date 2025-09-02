@@ -27,7 +27,8 @@ def cyclecheck(v):
         for chd in edges[v]:
             if states[chd] == 0:
                 parents[chd] = v
-                cyclecheck(chd)
+                cyclecheck(chd
+                           )
 
             elif states[chd] == 1:
                 if (chd == parents[v]):
