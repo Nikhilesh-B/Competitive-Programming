@@ -3,6 +3,9 @@ import bisect
 
 input = sys.stdin.readline
 
+
+
+
 n, target = list(map(int, input().split()))
 arr = list(map(int, input().split()))
 

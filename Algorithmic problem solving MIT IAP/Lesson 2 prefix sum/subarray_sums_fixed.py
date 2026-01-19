@@ -1,11 +1,5 @@
 import sys
-from collections import defaultdict
 import random
-
-input = sys.stdin.readline
-
-n = int(input())
-arr = list(map(int, input().split()))
 
 # Random seed to protect against hash collision attacks
 RANDOM = random.randint(1, 10**9)
@@ -33,22 +27,21 @@ class SafeDict:
         return self.get(key, 0)
 
 
+# Use buffered read for faster I/O
+data = list(map(int, sys.stdin.buffer.read().split()))
+n, target = data[0], data[1]
+arr = data[2:2+n]
+
 ans = 0
-mod_seen = SafeDict()
-prefix_mod = 0
-mod_seen[prefix_mod] = 1
-# print(f"mod_seen ={mod_seen}")
+seen = SafeDict()
+seen[0] = 1  # Empty prefix has sum 0
+prefix = 0
 
-for i, a in enumerate(arr):
-    prefix_mod += a
-    prefix_mod %= n
-    ans += mod_seen[prefix_mod]
-
-    # print(f"Current idx={i}, current element={a}")
-    # print(f"prefix mod ={prefix_mod}")
-    # print(f"mod_seen ={mod_seen}")
-    # print(f"Answer ={ans}")
-
-    mod_seen[prefix_mod] += 1
+for x in arr:
+    prefix += x
+    # Count subarrays ending at current position with sum = target
+    ans += seen[prefix - target]
+    current_count = seen[prefix]
+    seen[prefix] = current_count + 1
 
 print(ans)
